@@ -7,6 +7,7 @@ import '../../../constants/colors.dart';
 import '../../explore/pages/explore_screen.dart';
 import '../../../mycourses/pages/mycourses.dart';
 import '../../bookmarks/screens/bookmarks_screen.dart';
+import '../../notifications/screens/notifcation_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -566,8 +567,8 @@ class _HomeScreenState extends State<HomeScreen> {
           label: 'Saved',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.person_outline),
-          label: 'Profile',
+          icon: Icon(Icons.notifications),
+          label: 'Notifications',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.more_horiz),
@@ -576,17 +577,24 @@ class _HomeScreenState extends State<HomeScreen> {
       ],
       onTap: (index) {
         if (index == 1) {
-          Navigator.push(
+          Navigator.pushReplacement(
             context,
             MaterialPageRoute(
               builder: (context) => MyCoursesScreen(),
             ),
           );
         } else if (index == 2) {
-          Navigator.push(
+          Navigator.pushReplacement(
             context,
             MaterialPageRoute(
               builder: (context) => BookmarksScreen(),
+            ),
+          );
+        } else if (index == 3) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => NotificationScreen(),
             ),
           );
         }

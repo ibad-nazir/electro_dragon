@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:electro_dragon/widgets/custom_bottom_nav_bar.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
@@ -86,7 +87,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     'Music',
                     'Social',
                     'Nightlife',
-                    'Concerts',
+                  'Concerts',
                     'Health',
                     'Submarine'
                   ]
@@ -246,6 +247,7 @@ class _SearchScreenState extends State<SearchScreen> {
           ),
         ),
       ),
+      bottomNavigationBar: const CustomBottomNavBar(currentIndex: 0),
     );
   }
 }

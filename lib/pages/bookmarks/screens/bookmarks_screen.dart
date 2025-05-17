@@ -1,8 +1,12 @@
+import 'package:electro_dragon/pages/home/screens/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:electro_dragon/pages/search/screens/search_screen.dart';
+
+import 'package:electro_dragon/pages/notifications/screens/notifcation_screen.dart';
+import 'package:electro_dragon/pages/auth/screens/account_screen.dart';
+import 'package:electro_dragon/widgets/custom_bottom_nav_bar.dart';
 import '../../../mycourses/pages/mycourses.dart';
-import '../../notifications/screens/notifcation_screen.dart';
 import '../widgets/bookmark_item.dart';
-import '../../home/screens/home_screen.dart';
 
 class BookmarksScreen extends StatefulWidget {
   const BookmarksScreen({Key? key}) : super(key: key);
@@ -17,36 +21,32 @@ class _BookmarksScreenState extends State<BookmarksScreen> {
   void _onItemTapped(int index) {
     if (index == _selectedIndex) return;
 
-    setState(() {
-      _selectedIndex = index;
-    });
-
     switch (index) {
-      case 0: // Browse
+      case 0:
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => const HomeScreen()),
         );
         break;
-      case 1: // My Courses
-        // TODO: Replace with actual MyCoursesScreen when available
+      case 1:
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => const MyCoursesScreen()),
         );
         break;
-      case 2: // Bookmarks
-        // Already on Bookmarks screen
+      case 2:
+        // Already on bookmarks
         break;
-      case 3: // Notifications
+      case 3:
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => const NotificationScreen()),
         );
         break;
-      case 4: // Account
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Account screen coming soon!')),
+      case 4:
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const AccountScreen()),
         );
         break;
     }
@@ -153,23 +153,7 @@ class _BookmarksScreenState extends State<BookmarksScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.grey,
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Browse'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.menu_book), label: 'My Courses'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.bookmark), label: 'Bookmarks'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.notifications), label: 'Notifications'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Account'),
-        ],
-      ),
+      bottomNavigationBar: const CustomBottomNavBar(currentIndex: 2),
     );
   }
 }
