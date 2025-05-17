@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../../constants/colors.dart';
+import '../../categeries/pages/categeries.dart';
+import '../widgets/course_item.dart';
 
 class ExploreScreen extends StatelessWidget {
   const ExploreScreen({Key? key}) : super(key: key);
@@ -163,7 +165,13 @@ class ExploreScreen extends StatelessWidget {
                           TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                   Spacer(),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => CategoriesScreen()),
+                      );
+                    },
                     child: Text("See all",
                         style: TextStyle(color: primaryColor, fontSize: 12)),
                   ),
@@ -335,20 +343,20 @@ class ExploreScreen extends StatelessWidget {
             ),
 
             // Courses List
-            _buildCourseItem(
-              "Computer Science",
+            CourseItem(
+              title: "Computer Science",
               rating: "4.5",
               lessons: "7 lessons",
             ),
             const Divider(),
-            _buildCourseItem(
-              "Nature & Environment",
+            CourseItem(
+              title: "Nature & Environment",
               rating: "4.3",
               lessons: "5 lessons",
             ),
             const Divider(),
-            _buildCourseItem(
-              "Literature",
+            CourseItem(
+              title: "Literature",
               rating: "4.7",
               lessons: "9 lessons",
               hasBookmark: true,
@@ -486,89 +494,6 @@ class ExploreScreen extends StatelessWidget {
           ],
         ),
       ],
-    );
-  }
-
-  Widget _buildCourseItem(String title,
-      {required String rating,
-      required String lessons,
-      bool hasBookmark = false}) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 8.0),
-      child: Row(
-        children: [
-          Container(
-            width: 80,
-            height: 80,
-            decoration: BoxDecoration(
-              color: Colors.grey[300],
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: const Center(
-                child: Text("80 x 80",
-                    style: TextStyle(color: Colors.white, fontSize: 12))),
-          ),
-          const SizedBox(width: 16),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(title,
-                    style: const TextStyle(fontWeight: FontWeight.bold)),
-                const SizedBox(height: 20),
-                Row(
-                  children: [
-                    Text("1h 47m ", style: const TextStyle(fontSize: 12)),
-                    const SizedBox(width: 4),
-                    Text(lessons, style: const TextStyle(fontSize: 12)),
-                    const SizedBox(width: 12),
-                    Text(rating, style: const TextStyle(fontSize: 12)),
-                    const SizedBox(width: 4),
-                    const Icon(Icons.star, color: Colors.amber, size: 14),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          BookmarkButton(initialState: hasBookmark),
-        ],
-      ),
-    );
-  }
-}
-
-// Create a separate stateful widget for the bookmark button
-class BookmarkButton extends StatefulWidget {
-  final bool initialState;
-
-  const BookmarkButton({Key? key, this.initialState = false}) : super(key: key);
-
-  @override
-  State<BookmarkButton> createState() => _BookmarkButtonState();
-}
-
-class _BookmarkButtonState extends State<BookmarkButton> {
-  late bool isBookmarked;
-
-  @override
-  void initState() {
-    super.initState();
-    isBookmarked = widget.initialState;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      icon: Icon(
-        isBookmarked ? Icons.bookmark : Icons.bookmark_outline,
-        color: isBookmarked ? Colors.red : null,
-      ),
-      onPressed: () {
-        setState(() {
-          isBookmarked = !isBookmarked;
-        });
-      },
     );
   }
 }
