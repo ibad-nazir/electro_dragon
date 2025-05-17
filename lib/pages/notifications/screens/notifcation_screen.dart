@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({Key? key}) : super(key: key);
 
-  Widget _notificationItem({bool isFollowing = false}) {
+  Widget _notificationItem({bool isFollowing = false, bool isPicture = false}) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
       child: Row(
