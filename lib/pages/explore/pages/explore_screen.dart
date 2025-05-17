@@ -217,94 +217,121 @@ class ExploreScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 8),
-            Row(
-              children: [
-                _buildAuthorItem("Literature"),
-                const SizedBox(width: 16),
-                _buildAuthorItem("Marketing"),
-              ],
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Row(
+                children: [
+                  _buildAuthorItem("Literature"),
+                  const SizedBox(width: 16),
+                  _buildAuthorItem("Marketing"),
+                ],
+              ),
             ),
 
             // New Releases Section
             const SizedBox(height: 24),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text("New Releases",
-                    style:
-                        TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                TextButton(
-                  onPressed: () {},
-                  child: Text("See all",
-                      style: TextStyle(color: primaryColor, fontSize: 12)),
-                ),
-              ],
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text("New Releases",
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                  TextButton(
+                    onPressed: () {},
+                    child: Text("See all",
+                        style: TextStyle(color: primaryColor, fontSize: 12)),
+                  ),
+                ],
+              ),
             ),
             const SizedBox(height: 8),
-            Row(
-              children: [
-                _buildNewReleaseCard("Creative"),
-                const SizedBox(width: 12),
-                _buildNewReleaseCard("Business", hasBookmark: true),
-              ],
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Row(
+                children: [
+                  _buildNewReleaseCard("Creative"),
+                  const SizedBox(width: 12),
+                  _buildNewReleaseCard("Business", hasBookmark: true),
+                ],
+              ),
             ),
 
             // Course List
             const SizedBox(height: 24),
-            Row(
-              children: [
-                Expanded(
-                  child: Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                    decoration: BoxDecoration(
-                      color: Colors.yellow,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: const Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          "taiha",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 8),
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                  decoration: BoxDecoration(
-                    color: Colors.grey[200],
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: const Row(
-                    children: [
-                      Text("4.8 (50)"),
-                    ],
-                  ),
-                ),
-              ],
-            ),
 
             const SizedBox(height: 12),
-            Row(
-              children: [
-                const Text("Most Popular"),
-                const Spacer(),
-                IconButton(
-                  icon: const Icon(Icons.sort, size: 18),
-                  onPressed: () {},
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.grey[100],
+                  borderRadius: BorderRadius.circular(8),
                 ),
-                const Text("Sort"),
-                IconButton(
-                  icon: const Icon(Icons.filter_list, size: 18),
-                  onPressed: () {},
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 12),
+                        decoration: BoxDecoration(
+                          color: Colors.grey[100],
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Row(
+                          children: [
+                            const Text("Most Popular",
+                                style: TextStyle(fontWeight: FontWeight.w500)),
+                            const Icon(Icons.keyboard_arrow_down, size: 20),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: 2,
+                      height: 35,
+                      color: Colors.grey[400],
+                    ),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 12),
+                      decoration: BoxDecoration(
+                        color: Colors.grey[100],
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Row(
+                        children: [
+                          const Icon(Icons.sort, size: 18),
+                          const SizedBox(width: 4),
+                          const Text("Sort"),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Container(
+                      width: 2,
+                      height: 35,
+                      color: Colors.grey[400],
+                    ),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 12),
+                      decoration: BoxDecoration(
+                        color: Colors.grey[100],
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Row(
+                        children: [
+                          const Icon(Icons.filter_list, size: 18),
+                          const SizedBox(width: 4),
+                          const Text("Filter"),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-                const Text("Filter"),
-              ],
+              ),
             ),
 
             // Courses List
@@ -411,41 +438,54 @@ class ExploreScreen extends StatelessWidget {
   }
 
   Widget _buildNewReleaseCard(String title, {bool hasBookmark = false}) {
-    return Container(
-      width: 155,
-      height: 102,
-      decoration: BoxDecoration(
-        color: Colors.grey[300],
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Stack(
-        children: [
-          const Center(
-              child: Text("155 x 102", style: TextStyle(color: Colors.white))),
-          if (hasBookmark)
-            Positioned(
-              top: 8,
-              right: 8,
-              child: Container(
-                padding: const EdgeInsets.all(4),
-                decoration: BoxDecoration(
-                  color: Colors.red,
-                  borderRadius: BorderRadius.circular(4),
-                ),
-                child:
-                    const Icon(Icons.bookmark, color: Colors.white, size: 16),
-              ),
-            ),
-          Positioned(
-            bottom: 8,
-            left: 8,
-            child: Text(
-              title,
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
-            ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          width: 155,
+          height: 102,
+          decoration: BoxDecoration(
+            color: Colors.grey[300],
+            borderRadius: BorderRadius.circular(12),
           ),
-        ],
-      ),
+          child: Stack(
+            children: [
+              const Center(
+                  child: Text("155 x 102",
+                      style: TextStyle(color: Colors.black38))),
+              if (hasBookmark)
+                Positioned(
+                  top: 8,
+                  right: 8,
+                  child: Container(
+                    padding: const EdgeInsets.all(4),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    child: const Icon(Icons.bookmark_border,
+                        color: Colors.black, size: 16),
+                  ),
+                ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 8),
+        Text(title, style: const TextStyle(fontSize: 14, color: Colors.grey)),
+        const SizedBox(height: 2),
+        Row(
+          children: [
+            Icon(Icons.star, color: Colors.amber, size: 16),
+            Icon(Icons.star, color: Colors.amber, size: 16),
+            Icon(Icons.star, color: Colors.amber, size: 16),
+            Icon(Icons.star, color: Colors.amber, size: 16),
+            Icon(Icons.star_half, color: Colors.amber, size: 16),
+            SizedBox(width: 4),
+            Text('4.1 (963)',
+                style: TextStyle(fontSize: 12, color: Colors.grey)),
+          ],
+        ),
+      ],
     );
   }
 
@@ -454,49 +494,81 @@ class ExploreScreen extends StatelessWidget {
       required String lessons,
       bool hasBookmark = false}) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 12.0),
+      padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 8.0),
       child: Row(
         children: [
           Container(
             width: 80,
-            height: 60,
-            color: Colors.grey[300],
+            height: 80,
+            decoration: BoxDecoration(
+              color: Colors.grey[300],
+              borderRadius: BorderRadius.circular(12),
+            ),
             child: const Center(
-                child: Text("80 x 60",
+                child: Text("80 x 80",
                     style: TextStyle(color: Colors.white, fontSize: 12))),
           ),
           const SizedBox(width: 16),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(title,
                     style: const TextStyle(fontWeight: FontWeight.bold)),
-                const SizedBox(height: 4),
+                const SizedBox(height: 20),
                 Row(
                   children: [
+                    Text("1h 47m ", style: const TextStyle(fontSize: 12)),
+                    const SizedBox(width: 4),
+                    Text(lessons, style: const TextStyle(fontSize: 12)),
+                    const SizedBox(width: 12),
                     Text(rating, style: const TextStyle(fontSize: 12)),
                     const SizedBox(width: 4),
                     const Icon(Icons.star, color: Colors.amber, size: 14),
-                    const SizedBox(width: 12),
-                    Text(lessons, style: const TextStyle(fontSize: 12)),
                   ],
                 ),
               ],
             ),
           ),
-          if (hasBookmark)
-            IconButton(
-              icon: const Icon(Icons.bookmark, color: Colors.red),
-              onPressed: () {},
-            )
-          else
-            IconButton(
-              icon: const Icon(Icons.bookmark_outline),
-              onPressed: () {},
-            ),
+          BookmarkButton(initialState: hasBookmark),
         ],
       ),
+    );
+  }
+}
+
+// Create a separate stateful widget for the bookmark button
+class BookmarkButton extends StatefulWidget {
+  final bool initialState;
+
+  const BookmarkButton({Key? key, this.initialState = false}) : super(key: key);
+
+  @override
+  State<BookmarkButton> createState() => _BookmarkButtonState();
+}
+
+class _BookmarkButtonState extends State<BookmarkButton> {
+  late bool isBookmarked;
+
+  @override
+  void initState() {
+    super.initState();
+    isBookmarked = widget.initialState;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: Icon(
+        isBookmarked ? Icons.bookmark : Icons.bookmark_outline,
+        color: isBookmarked ? Colors.red : null,
+      ),
+      onPressed: () {
+        setState(() {
+          isBookmarked = !isBookmarked;
+        });
+      },
     );
   }
 }
