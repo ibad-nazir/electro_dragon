@@ -6,12 +6,15 @@ class CourseItem extends StatelessWidget {
   final String lessons;
   final bool hasBookmark;
 
+  final bool isFromDownlaods;
+
   const CourseItem({
     Key? key,
     required this.title,
     required this.rating,
     required this.lessons,
     this.hasBookmark = false,
+    this.isFromDownlaods = false,
   }) : super(key: key);
 
   @override
@@ -39,7 +42,7 @@ class CourseItem extends StatelessWidget {
               children: [
                 Text(title,
                     style: const TextStyle(fontWeight: FontWeight.bold)),
-                const SizedBox(height: 40),
+                const SizedBox(height: 20),
                 Row(
                   children: [
                     Text("1h 47m ", style: const TextStyle(fontSize: 12)),
@@ -54,7 +57,12 @@ class CourseItem extends StatelessWidget {
               ],
             ),
           ),
-          BookmarkButton(initialState: hasBookmark),
+          if (hasBookmark) BookmarkButton(initialState: hasBookmark),
+          if (isFromDownlaods)
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.settings),
+            ),
         ],
       ),
     );

@@ -5,6 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../constants/colors.dart';
 import '../../explore/pages/explore_screen.dart';
+import '../../../mycourses/pages/mycourses.dart';
+import '../../bookmarks/screens/bookmarks_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -547,16 +549,48 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildBottomNavigationBar() {
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
-      selectedItemColor: Colors.blue,
+      selectedItemColor: primaryColor,
       unselectedItemColor: Colors.grey,
+      currentIndex: 0,
       items: [
-        BottomNavigationBarItem(icon: Icon(Icons.search), label: ''),
-        BottomNavigationBarItem(icon: Icon(Icons.bookmark_border), label: ''),
         BottomNavigationBarItem(
-            icon: Icon(Icons.play_circle_outline), label: ''),
-        BottomNavigationBarItem(icon: Icon(Icons.person_outline), label: ''),
-        BottomNavigationBarItem(icon: Icon(Icons.more_horiz), label: ''),
+          icon: Icon(Icons.home),
+          label: 'Home',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.menu_book_outlined),
+          label: 'My Courses',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.bookmark_border),
+          label: 'Saved',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.person_outline),
+          label: 'Profile',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.more_horiz),
+          label: 'More',
+        ),
       ],
+      onTap: (index) {
+        if (index == 1) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => MyCoursesScreen(),
+            ),
+          );
+        } else if (index == 2) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => BookmarksScreen(),
+            ),
+          );
+        }
+      },
     );
   }
 
